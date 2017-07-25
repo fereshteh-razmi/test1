@@ -18,9 +18,8 @@ The KDTree is a binary tree where nodes corresponds to point in a k-dimensional 
 
 ## Distance Measure
 The first issues one should deals with the measure of "closeness"? Depending on the application one might consider different metrics.
-For example, one might see 2 years of age a big difference for persons which make the people very far from each other even if they are located in the same city. However, for a different application 2 years of different might be considered very close while locating even on a village will be a large distance. We capture the distance between the three dimensional persons p = [p.lat, p.long, p.age] and q = [q.lat, q.long, q.age] by an inverse kernel matrix K where the distance can be computed via
-$$ dist(p, q) = (p-q)' K^-1 (p-q) $$
-where, $K$ is any positive semidefinite matrix.
+For example, one might see 2 years of age a big difference for persons which make the people very far from each other even if they are located in the same city. However, for a different application 2 years of different might be considered very close while locating even on a village will be a large distance. We capture the distance between the three dimensional persons p = [p.lat, p.long, p.age] and q = [q.lat, q.long, q.age] by an inverse kernel matrix K where the distance can be computed via dist(p, q) = (p-q)' K^-1 (p-q)
+where, K is any positive semidefinite matrix.
 
 In our case, we choose $K$ to be diagonal, i.e., different dimensions don't interact with each other for computing the distance. In other words, the difference that age is imposing is indecent of the location and vice versa.
 Therefore, we simply get $K = diag([c_{lat}, c_{long}, c_{age}])$ where the elements are the normalizer for the corresponding dimension.
