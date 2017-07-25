@@ -25,9 +25,12 @@ $$ dist(p, q) =  \sqrt{ (p.lat-q.lat)^2/c_{lat} + (p.long-q.long)^2/c_{long} + (
 
 ## Tree Construction
 The tree is simply constructed in a recurrsive fashion. The constructure of the KDTree first fins the best dimension to with which to split the points. We try to select the dimension whos range is the biggest frist. Generally, more complex dimension selection can be employed depending on the application. Then, we find the median and divide the points into two groups by being on the left or right of the median along the selected dimension. The left and the right child nodes are created and the construction proceeds recursively until a node contains 20 or less points. In this case the recurresion will stop.
-The complexity of the algoirthm is $O(n \log(n))$.
+The complexity of the algoirthm is $O(n \log(n))$ where $n$ is the number of elements.
 
 ## Tree Search
-The search is conducted using the tree structure. We compare the query with the root of the current subtree along the selected axis. If it's smaller we go to the left subtree and if the query value is larger we recurse the search procedure on the right subtree. This will continiue until we reach out to a leaf. A leaf will have more than 10 and less than 20 nodes (because of the cuttoff value of 20 we used in the previous section).
+The search is conducted using the tree structure. We compare the query with the root of the current subtree along the selected axis. If it's smaller we go to the left subtree and if the query value is larger we recurse the search procedure on the right subtree. This will continiue until we reach out to a leaf. A leaf will have more than 10 and less than 20 nodes (because of the cuttoff value of 20 we used in the previous section). Then, we simpliy sort this set based on their distance and output the top 10 closest ones.
+This procedure takes $O (log n)$ time.
 
 ## Discussion
+The algorithm we proposed based on KDTree requires $O(n \log(n))$ as a preprocess and $O(log(n))$ for the query time. Just compare to the navie algorithm which takes $O(1)$ for preprocessing and $O(n)$ for query time.
+Alternatively, one may be able to use Hash. More specificially, Locality Sensitive Hashing is an algorithm which can be efficient as well. In our case, the KDtree algoirthm was efficient enough.
