@@ -18,7 +18,8 @@ For example, one might see 2 years of age a big difference for persons which mak
 $$ dist(p, q) = (p-q)' K^-1 (p-q) $$
 where, $K$ is any positive semdefinite matrix.
 
-In our case, we choose $K$ to be diagonal. In other words different dimensions don't interact with each other for computing the distance. T
+In our case, we choose $K$ to be diagonal. In other words different dimensions don't interact with each other for computing the distance.Therefore, we simpliy get $K = diag([c_{lat}, c_{long}, c_{age}])$ where the elements are the normalizer for the corresponding dimension.
+
 
 
 ## Tree Construction
