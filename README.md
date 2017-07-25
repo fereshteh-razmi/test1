@@ -21,10 +21,10 @@ The first issues one should deals with the measure of "closeness"? Depending on 
 For example, one might see 2 years of age a big difference for persons which make the people very far from each other even if they are located in the same city. However, for a different application 2 years of different might be considered very close while locating even on a village will be a large distance. We capture the distance between the three dimensional persons p = [p.lat, p.long, p.age] and q = [q.lat, q.long, q.age] by an inverse kernel matrix K where the distance can be computed via dist(p, q) = (p-q)' K^-1 (p-q)
 where, K is any positive semidefinite matrix.
 
-In our case, we choose $K$ to be diagonal, i.e., different dimensions don't interact with each other for computing the distance. In other words, the difference that age is imposing is indecent of the location and vice versa.
-Therefore, we simply get $K = diag([c_{lat}, c_{long}, c_{age}])$ where the elements are the normalizer for the corresponding dimension.
+In our case, we choose K to be diagonal, i.e., different dimensions don't interact with each other for computing the distance. In other words, the difference that age is imposing is indecent of the location and vice versa.
+Therefore, we simply get K = diag( [c_lat, c_long, c_age] ) where the elements are the normalizer for the corresponding dimension.
 In this case the distance simply reduces to:
-$$ dist(p, q) =  \sqrt{ (p.lat-q.lat)^2/c_{lat} + (p.long-q.long)^2/c_{long} + (p.age-q.age)^2/c_{age} } $$
+dist(p, q) =   norm( (p.lat-q.lat)^2/c_lat + (p.long-q.long)^2/c_long , (p.age-q.age)^2/c_age ) 
 
 ## Tree Construction
 The tree is simply constructed in a recursive fashion. The constructor of the KDTree first fins the best dimension to with which to split the points. We try to select the dimension whose range is the biggest first. Generally, more complex dimension selection can be employed depending on the application. Then, we find the median and divide the points into two groups by being on the left or right of the median along the selected dimension. The left and the right child nodes are created and the construction proceeds recursively until a node contains 20 or less points. In this case the recursion will stop.
