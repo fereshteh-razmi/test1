@@ -19,6 +19,9 @@ In this section we presents our solution.
 
 ## KD Tree
 The KDTree is a binary tree where nodes corresponds to point in a k-dimensional space. Leaves usually store the actual data (or a collection of them) and non-leaves are implicitly generating a hyperplane that divides the space into two parts. Points to the left/right of this hyperplane are represented by the left/right subtree. 
+```python
+print(s)
+```
 
 ## Distance Measure
 The first issues one should deals with the measure of "closeness"? Depending on the application one might consider different metrics.
