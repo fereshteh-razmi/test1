@@ -3,8 +3,20 @@ We formulate the problem as an "approximate nearest neighbour" and provide a sol
 
 Our solution will comprised of KDTree a datastructure that stores persons and will allows query with time complixty of the order of the depth of the tree which is usually lograithmic in the number of elements in our datastore.
 
-# Background
+# Data Generation
+
+
+# Proposed Solution
+In this section we presents our solution
 
 ## KD Tree
 The KDTree is a binary tree where nodes corresponds to point in a k-dimensional space. Leaves usually store the actual data (or a colleciton of them) and non-leaves are implicitly generating a hyperplane that divides the space into two parts. Points to the left/right of this hyperplane are represented by the left/right subtree.
 
+## Distance Measure
+
+## Tree Construction
+
+
+## Tree Search
+
+## Discussion
