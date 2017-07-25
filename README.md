@@ -16,6 +16,10 @@ The KDTree is a binary tree where nodes corresponds to point in a k-dimensional 
 The first issues one should deals with the measure of "closeness"? Depnding on the application one might consider different metrics.
 For example, one might see 2 years of age a big difference for persons which make the people very far from each other even if they are located in the same city. However, for a different applicaiton 2 years of different might be considered very close while locating even on a vilage will be a large distance. We capture the distance between the three dimensional persons p = [p.lat, p.long, p.age] and q = [q.lat, q.long, q.age] by an inverse kernel matrix K where the distance can be computed via
 $$ dist(p, q) = (p-q)' K^-1 (p-q) $$
+where, $K$ is any positive semdefinite matrix.
+
+In our case, we choose $K$ to be diagonal. In other words different dimensions don't interact with each other for computing the distance. T
+
 
 ## Tree Construction
 
