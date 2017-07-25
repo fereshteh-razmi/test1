@@ -24,16 +24,17 @@ where, K is any positive semidefinite matrix.
 In our case, we choose K to be diagonal, i.e., different dimensions don't interact with each other for computing the distance. In other words, the difference that age is imposing is indecent of the location and vice versa.
 Therefore, we simply get K = diag( [c_lat, c_long, c_age] ) where the elements are the normalizer for the corresponding dimension.
 In this case the distance simply reduces to:
-dist(p, q) =   norm( (p.lat-q.lat)^2/c_lat + (p.long-q.long)^2/c_long , (p.age-q.age)^2/c_age ) 
+
+dist(p, q) =   norm( (p.lat-q.lat)/c_lat + (p.long-q.long)/c_long , (p.age-q.age)/c_age ) 
 
 ## Tree Construction
 The tree is simply constructed in a recursive fashion. The constructor of the KDTree first fins the best dimension to with which to split the points. We try to select the dimension whose range is the biggest first. Generally, more complex dimension selection can be employed depending on the application. Then, we find the median and divide the points into two groups by being on the left or right of the median along the selected dimension. The left and the right child nodes are created and the construction proceeds recursively until a node contains 20 or less points. In this case the recursion will stop.
-The complexity of the algorithm is $O(n \log(n))$ where $n$ is the number of elements.
+The complexity of the algorithm is O(n log(n)) where n is the number of elements.
 
 ## Tree Search
 The search is conducted using the tree structure. We compare the query with the root of the current subtree along the selected axis. If it's smaller we go to the left subtree and if the query value is larger we recurse the search procedure on the right subtree. This will continue until we reach out to a leaf. A leaf will have more than 10 and less than 20 nodes (because of the cutoff value of 20 we used in the previous section). Then, we simply sort this set based on their distance and output the top 10 closest ones.
-This procedure takes $O (log n)$ time.
+This procedure takes O(log(n)) time.
 
 ## Discussion
-The algorithm we proposed based on KDTree requires $O(n \log(n))$ as a preprocess and $O(log(n))$ for the query time. Just compare to the naive algorithm which takes $O(1)$ for preprocessing and $O(n)$ for query time.
+The algorithm we proposed based on KDTree requires O(n log(n)) as a preprocess and O(log(n)) for the query time. Just compare to the naive algorithm which takes O(1) for preprocessing and O(n) for query time.
 Alternatively, one may be able to use Hash. More specifically, Locality Sensitive Hashing is an algorithm which can be efficient as well. In our case, the KDtree algorithm was efficient enough.
